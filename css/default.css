@@ -1,0 +1,32 @@
+html {
+    background-color: #fefefe;
+}
+
+code {
+    font-family: monospace;
+}
+
+body {
+    color: #111111;
+    margin: 2em auto;
+    padding: 1em;
+    font-family: sans-serif;
+    line-height: 1.7em;
+    max-width: 800px;
+}
+
+h2 {
+    font-size: 1.2em;
+}
+
+h1 {
+    font-size: 1.6em;
+}
+
+a {
+    color: #0074d9; /* clrs.cc blue */
+}
+
+a:visited {
+    color: #85144b; /* clrs.cc maroon */
+}

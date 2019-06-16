@@ -1,0 +1,7 @@
+---
+pagetitle: Lifetimes in Rust
+title: How Lifetimes help achieve memory safety?
+author: Balagopal Komarath
+toc: false
+keywords: rust, lifetimes
+...
