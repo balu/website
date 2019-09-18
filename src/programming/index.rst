@@ -15,8 +15,7 @@ C, cweet
 Lisp, Scheme
   Homoiconic languages allow the programmer to extend the
   language to fit the problem they are solving. Ideal for
-  prototyping and incremental development with lots of
-  experimentation.
+  prototyping and incremental development.
 
 Haskell
   A pure functional language with a strong and expressive type

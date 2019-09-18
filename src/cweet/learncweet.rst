@@ -207,12 +207,10 @@
     //////////////
 
     // Defined using fn keyword.
-    // The types of all arguments and return value
-    // should be specified.
+    // Full type specification required.
     fn inc(n: int): int { return n + 1; }
 
-    // Lambda syntax is available for non-capturing functions
-    // or functions that can be inlined.
+    // `inline' implies all calls can be inlined.
     fn transform(xs: []int, inline f: &fn(:int):int): void
     {
         loop for (var &x; xs) {
@@ -220,10 +218,7 @@
         }
     }
 
-    // The following call does not create a closure.
-    // Instead, it inlines transform.
-    // A do expression can contain multiple statements
-    // and has the value of the last expression.
+    // The following call is inlined.
     transform(xs, \x => do { sum += x; sum; });
 
     // The pipe operator is just syntax sugar for data pipelines.
@@ -240,15 +235,22 @@
           ->fold(\(x, y) => x + y, 0)
           ->sqrt();
 
+    // Named arguments.
+    transform(.f = \x => x * x, .xs = xs);
+
     ///////////////////
     // Error Handling /
     ///////////////////
 
-    // The special value `error' corresponds to an error.
-    var q = if (y != 0) x/y else error;
-    // The type of the if-else expression is int|Error
+    // Types marked as `exception' are error signalling types.
+    // Error is the standard exception type.
+    exception struct Error {}
+    var error: Error = Error{};
 
-    // `Error' can only occur in an error expecting context.
+    // The type of the if-else expression is int|Error.
+    var q = if (y != 0) x/y else error;
+
+    // The postfix ^ propagates errors.
     fn min(x, y: *int): int|Error
     {
         var xx = *x^;
@@ -264,7 +266,7 @@
     // Scope guards
     fn file_copy(in, out: string): void|Error
     {
-        var inf = open(in, "r")^; // Could error out.
+        var inf = open(in, "r")^;
         scope (exit) { close(inf); }
 
         var outf = open(out, "w")^;
@@ -329,9 +331,9 @@
     // The `ptr' package provides many polymorphic
     // operators that work on pointers.
     import ptr;
-    var left  = front(p, n); // p + n
-    var right = back(p, n); // p - n
-    var dist  = dist(right, left); // right - left
+    var left  = add(p, n); // p + n
+    var right = sub(p, n); // p - n
+    var dist  = dist(right, left); // |right - left|
     inc(&p); // p++
     dec(&p); // p--
     next(p); // p + 1
@@ -379,8 +381,8 @@
     // Using the package.
     package client;
 
-    import foo.bar;
+    import b = foo.bar (bax = baz);
 
     fn client() {
-        assert(baz() == baz());
+        assert(b.bax() == b.bax());
     }

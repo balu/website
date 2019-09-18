@@ -159,10 +159,9 @@ bars.
 Operators
 ---------
 
-Separate operators are used for pointer arithmetic. Range
-operators can be used to specify ranges for iteration or pattern
-matching. The xor operator is :code:`+^` and the character
-:code:`^` is used for error propagation.
+Range operators can be used to specify ranges for iteration or
+pattern matching. The xor operator is :code:`+^` and the
+character :code:`^` is used for error propagation.
 
 ::
 
@@ -220,6 +219,7 @@ An expression computes a value.
 * Slicing
 * Access
 * Pipe
+* Lambda
 * Call
 * Construct
 * Annotate
@@ -274,6 +274,48 @@ scope or the file.
 * import
 * using
 
+  A ``using`` declaration is used to bring symbols into scope.
+  
+  ::
+  
+     enum Color { black, white, red, blue, green }
+     using type Color; // Bring all members into scope.
+     var fg = red;
+  
+  A ``using implicit`` declaration is used to bring objects into
+  implicit scope.
+  
+  ::
+  
+     fn skip(:*Lexer, :&fn(:char): bool);
+     fn skip_char(:*Lexer, :char);
+      
+     using implicit lexer;
+     skip(&isspace);
+     if (skip_char('.')) { return Token.Dot; }
+     else                { return Token.Err; }
+
+  When ``_`` is used as an expression, it takes the value of the
+  implicit argument of the required type.
+
+  ::
+
+     loop for (var i; 0..^10) {
+         using implicit i;
+         a[_+1] += a[_];
+     }
+      
+     fn foo(i: int, f: float, d: double);
+     using implicit d;
+     foo(i, f, _);
+     foo(.i = i, .f = f);
+
+  Implicit arguments to functions may be left out or can be
+  passed by explicitly specifying the ``_``.  It is an error if
+  two objects in implicit scope can be implicitly converted to an
+  implicit argument. In particular, multiple objects with the
+  same type are not allowed to be in implicit scope.
+  
 Attributes
 ----------
 

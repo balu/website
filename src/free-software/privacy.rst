@@ -31,6 +31,5 @@ NoScript
    enabled based on domain. Not recommended for casual users as
    most websites require javascript to work.
 
-Support `EFF <https://www.eff.org>`_ and `Internet Freedom
-Foundation <https://internetfreedom.in/>`_ to protect the
-Internet.
+Support the `Internet Freedom Foundation
+<https://internetfreedom.in/>`_ to protect the Internet.

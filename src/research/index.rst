@@ -5,9 +5,9 @@ reverse chronological order.
   We show that efficient constructions of circuits for computing
   homomorphism polynomials for small pattern graphs can be used
   to solve the induced subgraph isomorphism problem for small
-  pattern graphs. Using this, we show that there is a k-vertex
+  pattern graphs. Our main result is that there exists a k-vertex
   pattern graph that has a faster detection algorithm than the
-  one for k-clique answering an open problem from the 70s.
+  one for k-clique. This answers an open problem from the 70s.
 
 `On the complexity of hazard-free circuits <https://arxiv.org/abs/1711.01904>`_ (With Christian Ikenmeyer, Christoph Lenzen, Vladimir Lysikov, Andrey Mokhov, and Karteek Sreenivasaiah)
   A circuit is said to have a hazard if given an input where some
@@ -16,20 +16,19 @@ reverse chronological order.
   In 1957, Huffman asked whether given a circuit that has
   hazards, is it possible to obtain a hazard-free circuit that
   computes the same function without adding too many gates? In
-  this paper, we show that this is impossible thereby settling
-  this long standing open problem.  The paper does this via
-  connecting hazard-free computation and monotone computation.
+  this paper, we show that this is impossible. The result is
+  obtained using a newly discovered connection between
+  hazard-free computation and monotone computation.
 
 `Comparator circuits over finite bounded posets <https://arxiv.org/abs/1503.00275>`_ (With Jayalal Sarma and K.S. Sunil)
-  The comparator circuit model characterizes complexity of many
-  interesting problems such as the stable matching problem.
+  The comparator circuit model characterizes the complexity of
+  many interesting problems such as the stable matching problem.
   Intuitively, this circuit model appears to be slightly less
   powerful than arbitrary polynomial time computation. In this
   paper, we study generalizations of the comparator circuit model
   that characterizes polynomial time computation. We also show
   that certain natural restrictions on the comparator circuit
-  model also enables us to characterize space bounded
-  computation.
+  model enables us to characterize space bounded computation.
 
 `Pebbling meets coloring: Reversible pebble game on trees <https://arxiv.org/abs/1604.05510>`_ (With Jayalal Sarma and Saurabh Sawlani)
   The reversible pebbling game, played on directed acyclic
@@ -50,7 +49,7 @@ reverse chronological order.
 
 `Circuit complexity of properties of graphs with constant planar cutwidth <https://doi.org/10.1007/978-3-662-44465-8_29>`_ (With Kristoffer Arnsfelt Hansen, Jayalal Sarma, Sven Skyum, and Navid Talebanfard)
   We show that constant depth circuits can decide the perfect
-  matching, 3-colouring, and disjoint paths problem on graphs
+  matching, 3-coloring, and disjoint paths problem on graphs
   where the vertices can be arranged on a constant width grid and
   edges exist only between consecutive layers in the grid.
 
@@ -63,4 +62,4 @@ reverse chronological order.
 
 I did my PhD at IIT Madras, India. `Jayalal Sarma
 <https://www.cse.iitm.ac.in/~jayalal/>`_ was my PhD advisor.  You
-can download my PhD thesis `here <data/thesis.pdf>`_.
+can download my PhD thesis `here <../data/thesis.pdf>`_.

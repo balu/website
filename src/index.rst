@@ -23,8 +23,5 @@ You can view my full `CV <cv.html>`_ or download it in `pdf
 I am also a `free software <free-software/index.html>`_ and a
 `programming language <programming/index.html>`_ enthusiast.
 
-The `cweet <cweet/home.html>`_ programming language is a systems
-programming language designed by me.
-
 Please use the information on this `page <contact.html>`_ to
 contact me.
