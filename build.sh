@@ -3,7 +3,7 @@ srcdir="src/"
 htmldir="html/"
 templatedir="template/"
 default_template=$templatedir"default.html5"
-files="index 404 contact cv programming/auto programming/lifetimes \
+files="index contact cv programming/auto programming/lifetimes \
 programming/const cweet/home cweet/doc cweet/learncweet \
 research/index free-software/index free-software/programs \
 free-software/privacy free-software/commands programming/index \
