@@ -1,4 +1,0 @@
-The page is unavailable at the moment. If you followed a link on
-my website to reach this page, the page is most probably under
-construction. Otherwise, you can go to my `homepage
-<index.html>`_ to browse this website.
