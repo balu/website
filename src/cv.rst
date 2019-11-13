@@ -2,9 +2,13 @@
 Balagopal Komarath <bkomarath@rbgo.in>
 ======================================
 
-I am a researcher who works in computational complexity theory.
-My work involves proving lower bounds against *natural*
-algorithms for compuational problems.
+Contact:
+
+  423, E1 3, Saarland University, 66123 Saarbrücken, Germany.
+
+Areas of Interest:
+
+  Circuit Complexity, Algorithms, Lower Bounds.
 
 Publications
 ------------
@@ -18,12 +22,13 @@ Markus Bläser, Balagopal Komarath, and Karteek Sreenivasaiah.
 "Graph pattern polynomials" *FSTTCS 2018: 18:1-18:13*
 
 Balagopal Komarath, Jayalal Sarma, and K.S. Sunil. "Comparator
-circuits over finite bounded posets" *Information and Computation
-Volume 261(Part 2): 160-174 (2018) (Also in ICALP 2015)*
+circuits over finite bounded posets" *Information and
+Computation, Volume 261(Part 2): 160-174 (2018) (Also in ICALP
+2015)*
 
 Balagopal Komarath, Jayalal Sarma, and Saurabh Sawlani. "Pebbling
 meets coloring: Reversible pebble game on trees" *Journal of
-Computer and System Sciences Volume 91: 33-41 (2018) (Also in
+Computer and System Sciences, Volume 91: 33-41 (2018) (Also in
 COCOON 2015)*
 
 Balagopal Komarath, Jayalal Sarma, and K.S. Sunil. "On the
@@ -42,8 +47,8 @@ Computation Theory, Volume 7(2): 8:1-8:21 (2015) (Also in STACS
 Work
 ----
 
-*Scientific Assistant*, Computational Complexity, Saarland
-University, Germany (2016 –)
+*Scientific Assistant*, Computational Complexity Group, Saarland
+University, Germany (2016 – present)
 
 *Research Assistant*, Department of Computer Science &
 Engineering, IIT Madras, India (2011 – 2016)
@@ -62,6 +67,13 @@ Instructor, *Complexity Theory*, Saarland University, Summer Term
 I served as a teaching assistant for many courses offered by the
 theory group at IIT Madras. A complete list is available on my
 page at IIT Madras [1]_.
+
+Professional Activities
+-----------------------
+
+Reviewed papers for SODA, ISAAC, ICALP, and STACS.
+
+Presented at STACS, ICALP, COCOON, and FSTTCS.
 
 Education
 ---------

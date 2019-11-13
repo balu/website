@@ -19,9 +19,9 @@ Comments are ignored by the compiler.
 Integer Literals
 ----------------
 
-The prefixes :code:`0x`, :code:`0X` (hex), :code:`0b`, :code:`0B`
-(binary), :code:`0c`, :code:`0C` (octal) are recognized. The
-:code:`_` character may be used as a separator.
+The prefixes ``0x``, ``0X`` (hex), ``0b``, ``0B``
+(binary), ``0c``, ``0C`` (octal) are recognized. The
+``_`` character may be used as a separator.
 
 An integer literal can have an integral or floating point type.
 
@@ -37,7 +37,7 @@ An integer literal can have an integral or floating point type.
 Floating Point Literals
 -----------------------
 
-The letters :code:`p` and :code:`P` may be used for scientific
+The letters ``p`` and ``P`` may be used for scientific
 notation.
 
 Decimal, hexadecimal, octal, or binary notation may be used.
@@ -56,7 +56,7 @@ point types.
 Character Literals
 ------------------
 
-A character literal has type :code:`char` and is exactly one
+A character literal has type ``char`` and is exactly one
 byte.
 
 ::
@@ -72,7 +72,7 @@ String Literals
 ---------------
 
 A null byte is appended automatically to a string literal. String
-literals are represented by a :code:`[]char` type where the
+literals are represented by a ``[]char`` type where the
 length excludes the terminating null byte.
 
 ::
@@ -128,25 +128,26 @@ length excludes the terminating null byte.
 Keywords
 --------
 
-The following is the complete list of keywords.
+The following is the complete list containing all forty-five
+keywords.
 
 ::
 
    var fn type struct union choice enum const exception
    when if else case match
-   loop for while break continue
+   loop for while break continue reverse
    try catch
    return
-   package namespace include import hiding
-   using cast alias extern scope do inline with
-   undefined Null Ref true false unreachable
+   package namespace include import hiding as
+   using implicit cast ann alias extern scope do inline with
+   undefined Null true false unreachable
+   _
 
 Identifiers
 -----------
 
-Identifiers follow the same rule as :code:`C` identifiers. A
-keyword can be made an identifier by enclosing within vertical
-bars.
+Identifiers follow the same rule as ``C`` identifiers.
+Identifiers with a double underscore are reserved.
 
 ::
 
@@ -154,14 +155,13 @@ bars.
    _bar
    foo_bar
    foo123
-   |match|
 
 Operators
 ---------
 
 Range operators can be used to specify ranges for iteration or
-pattern matching. The xor operator is :code:`+^` and the
-character :code:`^` is used for error propagation.
+pattern matching. The xor operator is ``+^`` and the
+character ``^`` is used for error propagation.
 
 ::
 
@@ -176,6 +176,8 @@ character :code:`^` is used for error propagation.
    [] () {}
    <|>
    cast
+   ann
+   type
 
 Punctutation
 ------------
@@ -184,19 +186,7 @@ Punctuation characters are delimiters, separators, or markers.
 
 ::
 
-   ( ) { } ; : , => \ ...
-
-Special Tokens
---------------
-
-The following are special tokens.
-
-::
-
-   _ // Underscore for unnamed identifiers etc.
-   ... // Ignore tail in patterns, varargs etc.
-   @ // Attribute marker.
-   # // Directive marker.
+   ( ) { } ; : , => \ ... @ #
 
 Grammar
 =======
@@ -214,7 +204,6 @@ An expression computes a value.
 * Boolean
 * Bitwise
 * Comparison
-* Pointer Arithmetic
 * Indexing
 * Slicing
 * Access
@@ -225,8 +214,8 @@ An expression computes a value.
 * Annotate
 * Error
 * Cast
-* Pointer Access
-* Choice
+* Dereference
+* Control Flow
 * Block
 * Term
 
@@ -235,9 +224,24 @@ Statements
 
 * Assignment
 * Update
-* Loops
+
+  Only expressions classified as lvalues can appear on the lhs of
+  an assignment or as an operand to the address of operator. The
+  set ``e`` of lvalue expressions are recursively defined based
+  on syntax as follows:
+
+    - ``p.q.x`` where ``x`` is declared as a ``var`` in package
+      ``p.q``.
+    - ``*f`` where ``f`` is any expression.
+    - ``e[i]``
+    - ``e.n``
+    - ``e!``
+    - ``e^``
+
+* Loop
 * Control Flow
 * Expression
+* Declaration
 
 Patterns
 --------
@@ -248,12 +252,14 @@ and binds component data to identifiers.
 * Identifier
 * Type
 * Field
+* Index
 * Expression
 * Range
 * Array
 * Pointer
 * Struct
 * Choice
+* Enum
 
 Declarations
 ------------
@@ -261,11 +267,39 @@ Declarations
 A declaration binds a name to a definition.
 
 * Type
+
+  A type may be parametric over zero or more types.
+
+  ::
+
+     struct Node[t] {
+         head: *t;
+         tail: *Node[t];
+     }
+
 * Constant
 * Variable
 * Function
+
+  A function declaration must specify the types of all arguments
+  and the return type. A function may be parametric over zero or
+  more types.
+
+  ::
+
+     fn len[t](xs: []t): size
+     {
+         return xs.len;
+     }
+
 * Symbol Alias
 * Type Alias
+
+  A type alias may be parametric over zero or more types.
+
+  ::
+
+     type List[t] = :*Node[t];
 
 The effect of the following declarations are local to the lexical
 scope or the file.
@@ -274,7 +308,8 @@ scope or the file.
 * import
 * using
 
-  A ``using`` declaration is used to bring symbols into scope.
+  A ``using`` declaration is used to bring nested symbols into
+  scope.
   
   ::
   
@@ -287,8 +322,8 @@ scope or the file.
   
   ::
   
-     fn skip(:*Lexer, :&fn(:char): bool);
-     fn skip_char(:*Lexer, :char);
+     fn skip(:*Lexer, :&fn(:char): bool): void;
+     fn skip_char(:*Lexer, :char): bool;
       
      using implicit lexer;
      skip(&isspace);
@@ -314,8 +349,21 @@ scope or the file.
   passed by explicitly specifying the ``_``.  It is an error if
   two objects in implicit scope can be implicitly converted to an
   implicit argument. In particular, multiple objects with the
-  same type are not allowed to be in implicit scope.
-  
+  same type are not allowed to be in implicit scope. Also,
+  ambiguity between explicit arguments and implicit arguments
+  results in a compiler error.
+
+  ::
+
+    using implicit ann(int)(42);
+    fn sum(x, y: int): int { return 0; }
+    sum(1); // Error. Is 1 the first argument or the second?
+    sum(_, 1); // Ok.
+    fn fsum(x: int, y: float): int { return 0; }
+    fsum(1.0); // Ok. fsum(42, 1.0);
+    fn fsum1(x: float, y: int): int { return 0; }
+    fsum1(1); // Ok. fsum1(1, 42);
+
 Attributes
 ----------
 
@@ -372,13 +420,23 @@ The following are the builtin types.
 * Signed Integers
 * Unsigned Integers
 * Floating Point Numbers
-* char
-* repr
-* any
-* none
-* void
-* string
-* Error
+* ``char``
+* ``repr``
+* ``any``
+* ``none``
+* ``void``
+* ``string``
+
+  A ``string`` is a ``[]char`` which encodes the assumption that
+  a null byte follows the last ``char`` in the range.  For
+  example, the ``string`` ``"hello"`` has length ``5`` and takes
+  up 6 bytes of storage. A slicing operation on a string where
+  the end of the range is ommitted yields another ``string``.
+  Other slicing operations yield only a ``[]char``. The
+  ``string`` module defines functions ``from_slice`` and
+  ``to_slice`` to convert between ``string`` and ``[]char``.
+
+* ``Error``
 * Arrays
 * Pointers
 * References
@@ -396,20 +454,28 @@ Users can define types using one of the following constructs.
 * C-style enum
 * Wrapper Types
 
-Package Typing
---------------
+Packages and Package Types
+--------------------------
 
-When a package ascribed with a package type in the namespace file
-is imported, the compiler may read only the package type file to
-typecheck the code in the importing package.
+The package system is designed to aid fast parallel and serial
+compilation. If N is the average time to compile a package and M
+is the average time to compile a package type file, then a
+package that imports K packages can be compiled (including code
+generation) in time N + K*M. In addition, package type files need
+only be compiled once and can be reused for subsequent imports of
+packages with the same package type. Together, these two
+guarantees ensure low latency and high throughput. The key
+assumption behind this design is that M is much smaller than N
+and therefore the time to compile a package is independent of the
+size of the imported packages.
 
 Evaluation
 ----------
 
 * signed integers trap on overflow or underflow.
 * unsigned integers wrap around.
-* :code:`match` patterns are evaluated only when needed. The
-  :code:`<|>` operator is short circuiting.
+* ``match`` patterns are evaluated only when needed. The
+  ``<|>`` operator is short circuiting.
 
 Undefined Behaviour
 -------------------
@@ -417,5 +483,5 @@ Undefined Behaviour
 ABI
 ===
 
-We strive to stay as close to the platform's :code:`C` ABI as
+We strive to stay as close to the platform's ``C`` ABI as
 possible.

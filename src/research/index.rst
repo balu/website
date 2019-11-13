@@ -7,7 +7,7 @@ reverse chronological order.
   to solve the induced subgraph isomorphism problem for small
   pattern graphs. Our main result is that there exists a k-vertex
   pattern graph that has a faster detection algorithm than the
-  one for k-clique. This answers an open problem from the 70s.
+  one for k-clique. This answers an open problem from 1985.
 
 `On the complexity of hazard-free circuits <https://arxiv.org/abs/1711.01904>`_ (With Christian Ikenmeyer, Christoph Lenzen, Vladimir Lysikov, Andrey Mokhov, and Karteek Sreenivasaiah)
   A circuit is said to have a hazard if given an input where some

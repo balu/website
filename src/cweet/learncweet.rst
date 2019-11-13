@@ -10,7 +10,7 @@
     var i = 42; // Infer the type.
     var lakh = 100_000; // _ as a digit separator.
     var i: int = 42; // Specify type of variable.
-    var i = 42: int; // Specify type of initializer.
+    var i = ann(int)(42); // Specify type of initializer.
 
     //////////
     // Types /
@@ -83,8 +83,8 @@
 
     // A match statement can be used to pattern match.
     var is_connected = match (ns) {
-        Disconnected => false,
-        _            => true, // Catch-all pattern.
+        |Disconnected => false,
+        _             => true, // Catch-all pattern.
     };
 
     // Anonymous choices.
@@ -150,6 +150,11 @@
     // `for' loops over slices or ranges.
     loop for (var x; [2, 3, 5, 7][..]) {
         print(x);
+    }
+
+    // `reverse' allows iteration in reverse.
+    loop for (var i; reverse a.len^..0) {
+        print(a[i]);
     }
 
     // Iterating by reference.
@@ -238,14 +243,22 @@
     // Named arguments.
     transform(.f = \x => x * x, .xs = xs);
 
+    // `implicit' arguments.
+    using implicit ann(int)(1);
+    fn id(x: int): int { return x; }
+    print(id()); // prints 1.
+    fn sub(x, y: int): int { return a-b; }
+    // implicit values can be accessed by _.
+    print(sub(_, 2)); // prints -1.
+
     ///////////////////
     // Error Handling /
     ///////////////////
 
     // Types marked as `exception' are error signalling types.
     // Error is the standard exception type.
-    exception struct Error {}
-    var error: Error = Error{};
+    exception struct Error { a: int }
+    var error: Error = Error{0};
 
     // The type of the if-else expression is int|Error.
     var q = if (y != 0) x/y else error;
@@ -310,6 +323,48 @@
         _                  => { use_impulse_power(); }
     }
 
+    ////////////////////////////
+    // Parametric Polymorphism /
+    ////////////////////////////
+
+    // A parametric function over two types t and u.
+    fn second[t, u](x: *t, y: *u): *u { return y; }
+    var x: *int = &i;
+    var y: *float = &f;
+    var z = second(x, y); // z has type *float
+
+    // The C interface to `second' is:
+    // extern void *second(void *x, void *y);
+
+
+    // A parametric type.
+    struct Node[t] {
+        x: *t; // x: t; is an error.
+        xs: *Node[t];
+    }
+
+    // C:
+    //    struct Node {
+    //        void *x;
+    //        Node *xs;
+    //    };
+
+    // A parametric type alias.
+    alias List[t] = :*Node[t];
+
+    fn len[t](xs: List[t]): size
+    {
+        var s = 0;
+        loop while (xs != Null) {
+            xs = xs.xs;
+        }
+        return s;
+    }
+
+    // C:
+    //    typedef Node *List;
+    //    extern size_t len(List xs);
+
     ////////////////////
     // Low-level Stuff /
     ////////////////////
@@ -319,13 +374,13 @@
 
     // *T is convertible to *repr for reinterpretation.
     var i: i32 = 1;
-    var irep: []repr = {&i, @sizeOf(:i32)};
+    var irep: []repr = {&i, @sizeOf(type(i32))};
     var f: f32 = undefined;
-    var frep: []repr = {&f, @sizeOf(:f32)};
+    var frep: []repr = {&f, @sizeOf(type(f32))};
     memcpy(frep, irep);
 
     // Can also be done using a cast.
-    var f = cast(:f32)i;
+    var f = cast(f32)(i);
 
 
     // The `ptr' package provides many polymorphic
@@ -333,9 +388,11 @@
     import ptr;
     var left  = add(p, n); // p + n
     var right = sub(p, n); // p - n
-    var dist  = dist(right, left); // |right - left|
+    var d = dist(right, left); // |right - left|
     inc(&p); // p++
     dec(&p); // p--
+    front(&p, n); // p += n
+    back(&p, n); // p -= n
     next(p); // p + 1
     prev(p); // p - 1
 
@@ -343,9 +400,9 @@
     struct sse { sse_data: @alignTo(16) [4]float }
 
     // No strict type aliasing.
-    // Wrap around (unsigned) or trap (signed and size).
+    // Wrap around (unsigned) or trap/wrap (signed and size).
     // Indices are checked for overflow at runtime.
-    // struct, union etc follow C layout.
+    // Functions and types follow C layout.
     // Functions follow C calling convention.
     // Slices passed like ptr and len arguments.
     // &T, *T has same ABI as T*.
@@ -381,7 +438,7 @@
     // Using the package.
     package client;
 
-    import b = foo.bar (bax = baz);
+    import foo.bar as b (baz as bax);
 
     fn client() {
         assert(b.bax() == b.bax());

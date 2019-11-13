@@ -27,3 +27,5 @@ done
 pandoc --from=rst+smart src/cv.rst\
        --metadata-file=src/cv.yaml\
        -o html/data/cv.pdf
+cp data/thesis.pdf html/data/
+cp data/bkomarath_public_key.txt html/data/

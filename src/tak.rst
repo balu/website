@@ -1,5 +1,6 @@
 ``tak`` is a command line tool that can be used to create html
-presentations that follow the `Takahashi method <>`_.
+presentations that follow the `Takahashi method
+<https://en.wikipedia.org/wiki/Takahashi_method>`_.
 
 If you have setup ``pip`` for installing python packages, then
 you can install ``tak`` by the command ``pip install tak``.
