@@ -4,10 +4,7 @@ htmldir="html/"
 templatedir="template/"
 default_template=$templatedir"default.html5"
 files="index contact cv programming/auto programming/lifetimes \
-programming/const cweet/home cweet/doc cweet/learncweet \
-research/index free-software/index free-software/programs \
-free-software/privacy free-software/commands programming/index \
-tak takman"
+programming/const research/index teaching/index free-software/index  programming/index"
 
 for item in $files
 do
@@ -20,6 +17,7 @@ do
     pandoc --output=$outpre.html\
            --template=$template\
            --metadata-file=$srcpre.yaml\
+           --highlight-style=pygments\
            --toc\
            --self-contained\
            $srcpre.rst
@@ -29,3 +27,4 @@ pandoc --from=rst+smart src/cv.rst\
        -o html/data/cv.pdf
 cp data/thesis.pdf html/data/
 cp data/bkomarath_public_key.txt html/data/
+cp data/toc.tar.gz html/data/toc.tar.gz

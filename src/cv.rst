@@ -61,6 +61,9 @@ Engineering, IIT Madras, India (2009 – 2011)
 Teaching
 --------
 
+Instructor, *Complexity Theory*, Saarland University, Winter Term
+2019/20
+
 Instructor, *Complexity Theory*, Saarland University, Summer Term
 2018
 
@@ -89,12 +92,8 @@ Education
 *Master of Technology*, Department of Computer Science &
 Engineering, IIT Madras, 2011
 
-  CGPA: 9.67/10
-
 *Bachelor of Technology*, Department of Computer Science &
 Engineering, GEC Thrissur, 2007
-
-  Marks: 73%
 
 Awards & Scholarships
 ---------------------

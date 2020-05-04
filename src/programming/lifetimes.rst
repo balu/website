@@ -30,19 +30,19 @@ The lifetime of an object in an execution of the program is the
 span of time from when memory for the object is initialized to
 when the memory for the object is deallocated.
 
-::
-		
+.. code-block:: cpp
+
     void foo(bool b)
     {
         int *ip = new int;
-	if (b) {
-	    delete ip;
-	    // (1)
-	} else {
-	    *ip = 0;
-	}
-	delete ip;
-	// (2)
+        if (b) {
+            delete ip;
+            // (1)
+        } else {
+            *ip = 0;
+        }
+        delete ip;
+        // (2)
     }
 
 In any execution of a program calling `foo`, the lifetime of the
@@ -61,17 +61,17 @@ references to it. This is a conservative estimate because if
 there are no references to the object, then it cannot be accessed
 anymore.
 
-::
+.. code-block:: cpp
 
     void foo()
     {
         int* i = new int;
         int* j = new int;
-    	*i = 0;
-	*j = 0;
-    	bar(i, j);
-	// (1)
-    	baz(i);
+        *i = 0;
+        *j = 0;
+        bar(i, j);
+        // (1)
+        baz(i);
     }
 
 In the above program, the lifetime of the `int` pointed to by the
@@ -93,8 +93,8 @@ parameterized by two things -- a lifetime and the type of the
 referrent. On the contrary, a raw pointer is parameterized only
 by the type of the referrent as in other languages.
 
-::
-		
+.. code-block:: cpp
+
     template <lifetime a, typename T> class Ref { ... };
 
 In rust, the reference type gets special syntax. `Ref<'a, T>` is
@@ -112,17 +112,17 @@ lifetimes in a program and use scopes delimited using curly
 braces to specify their extent. Note that rust does not allow the
 programmer to directly specify lifetimes in this fashion.
 
-::
+.. code-block:: rust
 
     struct Foo {}
     fn foo() {
         'r1 {
-	    let x = Foo{};
-	    'r2 {
-	        let y = &x; // (1)
-	    }
-	    let z = x; // (2)
-	}
+            let x = Foo{};
+            'r2 {
+                let y = &x; // (1)
+            }
+            let z = x; // (2)
+        }
     }
 
 An assignment from `&'a  T` to `&'b  T` is valid if and only if
@@ -133,13 +133,13 @@ automatically inferred to have type `&'r2  Foo`. Since `'r1 >=
 `x`. This is valid because `x` is the only variable referring to
 that object.
 
-::
+.. code-block:: rust
 
     struct Foo {}
     fn foo() {
         let x = Foo{};
-	let y = &x;
-	let z = x;
+        let y = &x;
+        let z = x;
     }
 
 The above code will not compile because the reference `y` is
@@ -148,7 +148,7 @@ still active when the object is moved out of `x`.
 Let us look an example of lifetimes in action when passing
 references in and out of functions.
 
-::
+.. code-block:: rust
 
     struct Foo {}
 
@@ -159,11 +159,11 @@ references in and out of functions.
     fn main() {
         'r1 {
             let x = Foo{};
-	    'r2 {
+            'r2 {
                 let y = foo(&x); // (1)
                 let z = x; // (2)
-	    }
-	}
+            }
+        }
     }
 
 Here the rust compiler will disallow the move in (2). We can see
@@ -182,7 +182,7 @@ smallest lifetime that can be assigned to `'a` is `'r2`. The
 expression `&x` has type `&'r2 Foo` indicating that `x` is
 borrowed for the scope `'r2`. This prevents the move in (2).
     
-::
+.. code-block:: rust
 
     struct Foo {}
     
@@ -199,7 +199,7 @@ borrowed for the scope `'r2`. This prevents the move in (2).
                 let x = Foo{};
                 y = foo(&x);
             }
-	}
+        }
     }
     
 The above code will fail to compile even though it is memory safe
@@ -212,7 +212,7 @@ fails to compile.
 We can make the program compile by changing the return type of
 `foo` to `&'static Foo`.
 
-::
+.. code-block:: rust
 
     struct Foo {}
     
@@ -240,8 +240,7 @@ compiler will choose `'a = 'r3` where `'r3` is a lifetime that
 spans only the function call expression. Therefore, the move in
 (1) remains valid.
 
-    
-::
+.. code-block:: rust
 
     struct Foo {}
     
@@ -258,7 +257,7 @@ spans only the function call expression. Therefore, the move in
                 let x = Foo{};
                 y = foo(&x);
             }
-	}
+        }
     }
 
 The above program will fail to compile because the return
@@ -270,8 +269,8 @@ references as input. As an exercise, try and figure out the
 values of lifetimes `'a` and `'b` in both calls to `foo` and
 explain why the second call fails to compile.
 
-::
-		
+.. code-block:: rust
+
     struct Foo {}
     
     fn foo<'a, 'b>(x : &'a Foo, y : &'b Foo) -> &'a Foo {
@@ -303,8 +302,8 @@ contain a reference of lifetime `'r2` if and only if `'r2 >=
 'r1`. This ensures that all references contained within the
 object are valid until the object is deallocated.
 
-::
-		
+.. code-block:: rust
+
     struct Foo<'c> { x : &'c u64 }
     
     fn foo<'a, 'b>(x : &'a Foo<'a>, y : &'b Foo<'b>)
@@ -347,7 +346,7 @@ object of type `T` with lifetime `'a`. An object can only have
 atmost one mutable reference referring to it at any point of
 time.
 
-::
+.. code-block:: rust
 
     struct Foo { a : u32 }
     
@@ -358,7 +357,7 @@ time.
             let w = &x; // (1)
         }
         let z = &x; // (2)
-	assert!(x.a == 0 && z.a == 0);
+        assert!(x.a == 0 && z.a == 0);
     }
 
 Note that `x` is a mutable object. Mutable references can only
@@ -384,7 +383,7 @@ they refer to distinct struct members (1). But disallows mutable
 references to distinct array elements (2) because it is not
 verifiable in general.
 
-::
+.. code-block:: rust
 
     struct Foo { x : u64, y : u64 }
     
@@ -401,7 +400,7 @@ verifiable in general.
 These restrictions impose some constraints when designing
 interfaces.
 
-::
+.. code-block:: rust
 
     struct Foo { x : u64, y : u64 }
     
@@ -423,7 +422,7 @@ For taking references to disjoint parts of a vector, rust
 provides `split` and `split_at_mut` functions as part of the
 interface to a vector.
 
-::
+.. code-block:: rust
 
     fn main() {
         let mut x = vec![0, 1, 2, 3, 4];
@@ -431,7 +430,7 @@ interface to a vector.
         y[0] = 1;
         z[0] = 3;
         print!("{:?} {:?}", y, z); // [1, 1] [3, 3, 4]
-     }
+    }
 
 .. topic:: Summary
 

@@ -4,7 +4,7 @@ The Problem
 From C++11, the `auto` keyword can be used for automatic type
 deduction while declaring variables. For example:
 
-::
+.. code-block:: cpp
 
   auto i = 25; // i is an int.
   std::vector<int> v;
@@ -19,7 +19,7 @@ Another advantage of `auto` is that it disables implicit
 conversions that could happen when writing types explicitly. For
 example:
    
-::
+.. code-block:: cpp
 
    long long i = 0xFFFFFFFF; // A very large number.
    ...
@@ -40,7 +40,7 @@ It should be possible to specify types when declaring variables
 without forcing conversions. For example, a programmer should be
 able to write:
    
-::
+.. code-block:: cpp
 
    long long i = 0xFFFFFFFF;
    ...
@@ -50,7 +50,7 @@ able to write:
 
 A definition for `expect` could be as follows:
 
-::
+.. code-block:: cpp
   
     template<class T> struct expect {
       template<class U> struct e {
@@ -68,8 +68,8 @@ performed. The type of `y` is almost the same as type of `expr`
 `expect<T>::e<U>` depending on the operators implemented by `U`
 as follows:
   
-::
-    
+.. code-block:: cpp
+
     e& operator++()
     {
         return pre_increment<U>();
@@ -96,7 +96,7 @@ could have simply wrote something like the following for defining
 `expect<T>::e`. This should behave exactly like `auto` except for
 the additional compatibility check with `T`.
 
-::
+.. code-block:: cpp
 
    template<class T> struct expect {
        template<class U>
@@ -109,7 +109,7 @@ the additional compatibility check with `T`.
 Infact, using template parameter deduction for alias templates,
 we can implement the `auto` feature as follows:
    
-::
+.. code-block:: cpp
 
    template<class T> using auto = T;
    auto x = 5; // T = int
@@ -118,7 +118,7 @@ we can implement the `auto` feature as follows:
 This can be used to check conformance of types to interfaces as
 follows:
 
-::
+.. code-block:: cpp
 
   template<class T> using iterator = std::enable_if_t<
       is_iterator_v<T>,
@@ -130,7 +130,7 @@ follows:
 
 We could also supply deduction guides as follows:
 
-::
+.. code-block:: cpp
 
   template<class I> using range = std::pair<I, I>;
   // explicit deduction guide. (1)
@@ -163,7 +163,7 @@ This is just a proof of concept implementation. The check
 check whether all operations supported by the expected type `T`
 is supported by the actual type `U`.
 
-::
+.. code-block:: cpp
 
   #include <iostream>
   #include <type_traits>

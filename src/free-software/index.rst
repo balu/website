@@ -1,16 +1,11 @@
-A program is *free* if it guarantees all users the freedom to
-study, modify, and share the program.
+`toc.tar.gz <../data/toc.tar.gz>`_
 
-I maintain a list of `free software <programs.html>`_ that I
-recommend.
+  This archive contains programs for the course "Theory of Computation". It
+  includes a single-tape Turing machine simulator, programs for working with
+  regular expressions and finite automata, and a lambda calculus interpreter.
 
-I am the author of the following free software.
+A program is *free* if it guarantees all users the freedom to study, modify, and
+share the program.
 
-`cweet <../cweet/home.html>`_
-  The reference compiler for the cweet programming language.
-
-`tak <../tak.html>`_
-  Create Takahashi presentations.
-
-The `Free Software Foundation <https://www.fsf.org>`_ is a
-non-profit organization that promotes software user freedom.
+The `Free Software Foundation <https://www.fsf.org>`_ is a non-profit
+organization that promotes software user freedom.

@@ -4,7 +4,7 @@ modified through the binding being declared. For pointers, the
 pointer and the data pointed to can be declared :code:`const`
 independently.
 
-::
+.. code-block:: cpp
 
    int x = 42;
    int y = 21;
@@ -27,7 +27,7 @@ null-terminated string and a character as argument and returns a
 pointer to the first matching character in the string. It is
 declared as follows:
 
-::
+.. code-block:: cpp
 
    char *strchr(const char *str, int c);
 
@@ -37,7 +37,7 @@ is :code:`char *` because the input string could actually be
 mutable and the caller of the function may want to mutate the
 string through the returned value.
 
-::
+.. code-block:: cpp
 
    char a[] = "Hello world";
    char *p = strchr(a, 'w');
@@ -51,7 +51,7 @@ should not be mutable.
 The `C++` standard library solves this problem by declaring two
 overloads for this function.
 
-::
+.. code-block:: cpp
 
    char* strchr(char* str, int c);
    const char* strchr(const char* str, int c);
@@ -66,7 +66,7 @@ function un-callable from `C`.
 Using templates, we can combine the two equivalent function
 definitions into a single definition.
 
-::
+.. code-block:: cpp
 
    template <class T>
    // Hire a template guru to ensure that
@@ -82,7 +82,7 @@ This problem of distinguishing between :code:`const` and
 :code:`mut` also arises in :code:`rust`. For example, here are
 two methods of :code:`slice`.
 
-::
+.. code-block:: rust
 
    pub fn split_at(&self, mid: usize) -> (&[T], &[T])
    pub fn split_at_mut(&mut self, mid: usize) -> (&mut [T], &mut [T])
@@ -94,7 +94,7 @@ The `D` programming language provides a solution to this problem
 by providing the :code:`inout` keyword that allows functions to
 be generic over :code:`const` qualifiers.
 
-::
+.. code-block:: d
 
    inout(char)* strchr(inout(char)* str, int c) { return str; }
 
@@ -112,7 +112,7 @@ in higher-order functions. A more fundamental problem is that the
 concrete :code:`const` or :code:`mutable` value upon
 instantiation. The following valid example does not compile.
 
-::
+.. code-block:: d
 
    inout(int)* foo(
        inout(int)* a,
@@ -143,7 +143,7 @@ variables and the relations between them in the function
 declaration. An illuminating example is the following function
 used for iterating over intrusive linked lists:
 
-::
+.. code-block:: d
 
    void for_each(
        list_head* lh,
@@ -167,7 +167,7 @@ relation :code:`:` given by :code:`const : mut`. The above
 function can be declared much more precisely using the following
 declaration. The syntax is a mix of `rust` and `D`.
 
-::
+.. code-block:: rust
 
    fn for_each!(
      inout!3 : inout!2
@@ -188,7 +188,7 @@ remains the same irrespective of the actual values of
 to `C` as there is no need for name mangling. The following
 declaration should be used in `C`.
 
-::
+.. code-block:: c
 
    void for_each(
        const list_head* lh,
@@ -228,7 +228,7 @@ only the type parameter. One can solve this problem by allowing
 generic :code:`inout` parameters in datatype definitions. For
 example, here is the definition of slice.
 
-::
+.. code-block:: d
 
    struct slice!(T)
    {

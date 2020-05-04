@@ -5,6 +5,7 @@ then
     mkdir html/programming\
           html/free-software\
           html/cweet\
-          html/research
+          html/research\
+          html/teaching
     cp -r data html/
 fi
