@@ -4,7 +4,9 @@ htmldir="html/"
 templatedir="template/"
 default_template=$templatedir"default.html5"
 files="index contact cv programming/auto programming/lifetimes \
-programming/const research/index teaching/index free-software/index  programming/index"
+programming/const research/index teaching/index teaching/turing_machine \
+teaching/toc2020 \
+free-software/index  programming/index"
 
 for item in $files
 do

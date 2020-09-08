@@ -1,0 +1,128 @@
+Welcome
+=======
+
+Welcome to "Theory of Computation". In this course, we are going to try and answer fundamental questions about the nature of computation such as:
+
+  - Are all problems computable?
+  - Does backtracking help?
+  - Is there a best algorithm for all problems?
+  - Does more time help?
+  - Does more memory help?
+  - Is verifying solutions easier than finding them?
+
+Use `this < https://calendar.google.com/event?action=TEMPLATE&tmeid=MzZvNTU4YzMxbWEwa3B1ZDkwdnJwdTA3dnNfMjAyMDA4MDVUMDgzMDAwWiBia29tYXJhdGhAaWl0Z24uYWMuaW4&tmsrc=bkomarath%40iitgn.ac.in&scp=ALL>`_ to add lectures to your Google calendar. The Google meet link for lectures is `here <https://meet.google.com/xdk-tnpj-uva>`_.
+
+Please use your iitgn email id to login to the lectures. If you don't have an iitgn email id yet and plan to attend the lectures, write to me.
+
+News
+====
+
+27.08
+  The first quiz is on Thursday, Sep 3, 2PM IST.
+
+26.08
+  Solutions to Homework 2 and 3 are uploaded. Follow the same link used to obtain homework sheet.
+
+23.08
+  First assignment is uploaded.
+
+20.08
+  Homework 3 is uploaded.
+
+19.08
+  The tutorial on 25.08 and the lecture on 26.08 are swapped.
+
+People
+======
+
+The instructor for the course is Balagopal Komarath <bkomarath@iitgn.ac.in>. The teaching assistant for the course is Akash Pareek <pareek_akash@iitgn.ac.in>.
+
+Slots
+=====
+
+The lectures for this course will take place on Google meet during K slots. The tutorial will take place during the L1 slot.
+
+Reading
+=======
+
+You may use any textbook in the syllabus. These materials differ only in presentation. I will follow the presentation in my `notes <https://drive.google.com/file/d/1hi0SBvC6sUZ5DxgGOV6qFNfFF_y0dPv9/view?usp=sharing>`_. These will be regularly updated.
+
+You can find my handwritten notes that support my lectures `here <https://drive.google.com/file/d/1L0IAkPrFWFnsDPWBEVw6WPo5GBD04R5E/view?usp=sharing>`_.
+
+Lectures
+========
+
+  1. (Aug 5) Overview (`slides <https://drive.google.com/file/d/18uGkWurDF8YJXM3ojwxQ3T2v2fEYHlsU/view?usp=sharing>`_) (`video <https://drive.google.com/file/d/1yg1TUAs0ztvtJUHXlA_tz2g-Q8R2a7ZW/view?usp=sharing>`_)
+
+  2. (Aug 6) Alphabets, Strings, and Languages (`part 1 <https://drive.google.com/file/d/1u-XRFw0xYz_o66uWfxOe6i_Ektbgd-WW/view?usp=sharing>`_ `part 2 <https://drive.google.com/file/d/1DU22pZQ9VEhOgSc_vN7BM_yiVOMKQnS4/view?usp=sharing>`_) (`discussion <https://drive.google.com/file/d/1CnFlq6fy-Nf45aJJGLN0015zgjH7RMev/view?usp=sharing>`_)
+
+  3. (Aug 10) Finite Automata (`part 1 <https://drive.google.com/file/d/1aUNtviKTXoOco3rXu_CXKeRi_y-lOEzz/view?usp=sharing>`_ `part 2 <https://drive.google.com/file/d/1qtqWfx1FNLoNXkc2xqHuEEAxzIKLidrZ/view?usp=sharing>`_)
+
+  4. (Aug 13) Regular Expressions (`video <https://drive.google.com/file/d/18DaTKabeP7Pp60oUhGl3unE8l1y58YVb/view?usp=sharing>`_ `discussion <https://drive.google.com/file/d/1Uz3qABsVdObt-HQPyh1IfKtckhk3cYTL/view?usp=sharing>`_)
+
+  5. (Aug 17) NFA: Introduction (`part 1 <https://drive.google.com/file/d/1dTE0QNTMAMF-ZuWYK2z1yCFUka1058gj/view?usp=sharing>`_ `part 2 <https://drive.google.com/file/d/1htlb23FI9WC5zRFb6ME6eMLdDFqWdt0j/view?usp=sharing>`_)
+
+  6. (Aug 19) RE to NFA (`part 1 <https://drive.google.com/file/d/16B8c1wFwQhwkQ6QeC1mhqVh0GaT-i8nm/view?usp=sharing>`_ `part 2 <https://drive.google.com/file/d/1pyUQ3pjd6eUo0NsUoMZ1lKzPJw575Avt/view?usp=sharing>`_)
+
+  7. (Aug 20) NFA to RE (`part 1 <https://drive.google.com/file/d/1crqkHKHko4pBeN7PNViFhVFQ8wV_-UP4/view?usp=sharing>`_ `part 2 <https://drive.google.com/file/d/12mj8LTKKYk6csSAxNysrSW2nKbqkgWJJ/view?usp=sharing>`_)
+
+  8. (Aug 24) NFA to DFA (`video <https://drive.google.com/file/d/1k8WlusJMSsLf0M0dOfQltko5MjxXE2cv/view?usp=sharing>`_)
+
+  9. (Aug 25) Pumping Lemma (`video <https://drive.google.com/file/d/1U9UWxTJvkjscSM3ku9h5AdOr28k0POhp/view?usp=sharing>`_)
+
+  10. (Aug 27) Myhill-Nerode Theorem (`video <https://drive.google.com/file/d/1nL6NTkzbUwPNF1cbRQ9T3N2ViAOEEQQp/view?usp=sharing>`_)
+
+  11. (Sep 7) Turing Machines: Introduction (`video <https://drive.google.com/file/d/1Okjvl0q_5dmgdRYBOROID6tiK5RFFDO0/view?usp=sharing>`_)
+
+  12. (Sep 9) Turing Machines: Arithmetic (`video <https://drive.google.com/file/d/1UeMO69_0x3NBYBvTpDorSZV_rvQQqSef/view?usp=sharing>`_)
+
+Corrections
+===========
+
+(Aug 27, Lecture) The relation for L is called the Myhill-Nerode relation for L. Also, given a DFA for a language, the construction given in the proof of the only-if part need not give the Myhill-Nerode relation for L. In case the DFA is not optimal, it yields a more fine-grained relation. However, since even this fine-grained relation only has a finite number of equivalence classes, so does the Myhill-Nerode relation.
+
+Quizzes
+=======
+
+  1. (Sep 3) `First Quiz <https://drive.google.com/file/d/1bBByqr2fOFS_qh2JKT98dle9sAB7RtTA/view?usp=sharing>`_. Submit via email or by uploading to `this form <https://forms.gle/ogjrtdJkg12AwF9E6>`_.
+
+Assignments
+===========
+
+  1. (Aug 30) `First Assignment <https://drive.google.com/file/d/1p2ssKpqu1hwX9PR-LCkwrDTGvP76hz0z/view?usp=sharing>`_
+
+Homework
+========
+
+  1. (Aug 11) `Homework 1 <https://drive.google.com/file/d/1BESoBK6xU6iCPeje3blQoGtjgvzIQ_Lz/view?usp=sharing>`_ `Solutions <https://drive.google.com/file/d/11BTjxhd44i-efSY6-nNi9ztzD1bdLTHm/view?usp=sharing>`_
+
+  2. (Aug 18) `Homework 2 <https://drive.google.com/file/d/1y2G_jaep-UPSXLIOID-v_MBFJLkjy0CN/view?usp=sharing>`_
+
+  3. (Aug 26) `Homework 3<https://drive.google.com/file/d/11Z7WbYGRBHAlecCE17vdmspy-ueJc_PD/view?usp=sharing>`_
+
+Tutorials
+=========
+
+  1. (Aug 11) `discussion <https://drive.google.com/file/d/1VxWXPJra-JHHnf_pKxrKGwnuFcLGDa1o/view?usp=sharing>`_
+
+  2. (Aug 18) `demo <https://drive.google.com/file/d/1aT5P9_iiVJohBzM5t14v3kAPvF_9Al4T/view?usp=sharing>`_ `discussion <https://drive.google.com/file/d/1BMl5cNhyAQUpPM93oBBcUEjm4A7O9QNm/view?usp=sharing>`_
+
+  3. (Aug 26) `discussion <https://drive.google.com/file/d/10TuFIenCm4k7qi64AEvZnPy0XPDETxXg/view?usp=sharing>`_
+
+  4. (Sep 8) `discussion <https://drive.google.com/file/d/1vCfk8is_slfyzErSptnlg0VgudcwReMc/view?usp=sharing>`_
+
+Software
+========
+
+You may use simulators available `here <https://github.com/balu/toc>`_ or elsewhere to aid you in learning the subject. Please note that simulators are strictly optional.
+
+Evaluation
+==========
+
+Your grades will be determined using assignments and quizzes.
+
+I will also give homework that will not be evaluated. The questions given as homework will be hard and are designed to deepen the understanding of the subject. You are encouraged to collaborate with others while solving homework problems after spending some time thinking about them on your own.
+
+The assignment questions will be of moderate difficulty and you will be given 7 days or more to solve each assignment. No collaboration is allowed. When submitting solutions, you must write how you arrived at the solution and list any failed approaches.
+
+There will be 3 time-bound quizzes. The problems will be easy provided that you have spent sufficient time on your homework and assignments.
